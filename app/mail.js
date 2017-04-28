@@ -1,5 +1,6 @@
 var nodemailer = require("nodemailer");
-var dateformat = require('dateformat')
+var db = require("./db");
+var dateformat = require('dateformat');
 var smtpTransport = nodemailer.createTransport({
     /*service: "Outlook365",
     host: "smtp.office365.com",
@@ -33,7 +34,8 @@ function send(data) {
             res.end("error");
         } else {
             if (res.response.indexOf('250') > -1) {
-                // console.log(res.response); LOG to pm2 log ??
+                console.log(res.response, data.lastname, data.ename);
+                db.close(data.id);
             } else {
                 console.log(JSON.stringify(res));
                 res.end("sent");
