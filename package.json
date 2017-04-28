@@ -1,0 +1,19 @@
+{
+  "name": "live-events-register",
+  "version": "1.0.0",
+  "description": "User register",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dateformat": "^2.0.0",
+    "express": "^4.15.2",
+    "lodash": "^4.17.4",
+    "mysql": "^2.13.0",
+    "nodemailer": "^4.0.1"
+  },
+  "devDependencies": {}
+}

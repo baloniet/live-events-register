@@ -1,0 +1,69 @@
+var mysql = require('mysql');
+var mail = require('./mail');
+
+var pool = mysql.createPool({
+    connectionLimit: 100, //important
+    host: 'localhost',
+    user: 'event',
+    password: 'event',
+    database: 'live_events',
+    debug: false
+});
+
+const cntSql = 'SELECT count(*) cnt from register where sent = 0';
+const dataSql =
+    'SELECT r.*,l.email lemail,e.name ename,e.starttime,e.endtime FROM register r, location l, event e ' +
+    'where r.sent = 0 and l.id = e.location_id and e.id = r.event_id order by r.cdate desc;';
+
+function count() {
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            console.log("Error in connection database");
+            return;
+        }
+
+        connection.query(cntSql, function (err, rows) {
+            connection.release();
+            if (!err) {
+                let row = rows[0];
+                /*if (row.cnt == 0)
+                    console.log("No new registered users")
+                else*/
+                send(row)
+            }
+        });
+
+        connection.on('error', function (err) {
+            console.log("Error in connection database");
+            return;
+        });
+    });
+}
+
+function send(row) {
+
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            console.log("Error in connection database");
+            return;
+        }
+
+        connection.query(dataSql, function (err, rows) {
+            connection.release();
+            if (!err) {
+                for (var i = 0; i < rows.length; i++) {
+                    mail.send(rows[i]);
+                }
+            };
+
+            connection.on('error', function (err) {
+                console.log("Error in connection database");
+                return;
+            });
+        });
+    })
+
+}
+
+module.exports.count = count
