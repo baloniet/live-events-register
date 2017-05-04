@@ -95,5 +95,10 @@ function close(id) {
 
 }
 
+function testMail(){
+    mail.testMail();
+}
+
 module.exports.count = count
 module.exports.close = close
+module.exports.testMail = testMail
