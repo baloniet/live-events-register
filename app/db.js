@@ -1,13 +1,15 @@
 var mysql = require('mysql');
 var mail = require('./mail');
+var env = require('./datasources.json');
+
 
 var pool = mysql.createPool({
     connectionLimit: 100, //important
-    host: 'vgccrm.moj-servis.si',
-    user: 'event',
-    password: 'Vgccrm2=!/',
-    database: 'live_events',
-    port: '20050',
+    host: env.liveEventsDB.host,
+    user: env.liveEventsDB.user,
+    password: env.liveEventsDB.password,
+    database: env.liveEventsDB.database,
+    port: env.liveEventsDB.port,
     debug: false
 });
 

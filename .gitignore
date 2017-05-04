@@ -28,3 +28,5 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+app/datasources.json
+live-events-register-1.0.0.tgz

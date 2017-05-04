@@ -2,17 +2,17 @@ var nodemailer = require("nodemailer");
 var db = require("./db");
 var dateformat = require('dateformat');
 var smtpTransport = nodemailer.createTransport({
-    /*service: "Outlook365",
+    service: "Outlook365",
     host: "smtp.office365.com",
     auth: {
         user: "vgccrm@luniverza.si",
         pass: "Mawo5722"
-    }*/
-    service: "gmail",
+    }
+    /*service: "gmail",
     auth: {
         user: "jsoftl.apps@gmail.com",
         pass: "jlavric12976"
-    }
+    }*/
 
 });
 
