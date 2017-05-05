@@ -59,7 +59,7 @@ function send(row) {
             connection.release();
             if (!err) {
                 for (var i = 0; i < rows.length; i++) {
-                    mail.send(env.liveEventsDB.host,rows[i]);
+                    mail.send(env.liveEventsDB.servername,rows[i]);
                 }
             };
 
@@ -96,7 +96,7 @@ function close(id) {
 }
 
 function testMail(){
-    mail.testMail(env.liveEventsDB.host);
+    mail.testMail(env.liveEventsDB.servername);
 }
 
 module.exports.count = count
