@@ -39,13 +39,13 @@ function send(data) {
     });
 }
 
-function testMail() {
+function testMail(host) {
     var mailOptions = {
         to: 'janez.lavric@gmail.com',
         from: 'vgccrm@luniverza.si',
-        subject: 'VGCCRM register mail test',
+        subject: 'VGCCRM register mail test - ' + host,
         text: '',
-        html: 'Register server has started.'
+        html: 'Register server on <b>' + host + '</b> has started.'
     }
     console.log('sending test mail');
     smtpTransport.sendMail(mailOptions, function (error, res) {

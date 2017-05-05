@@ -96,7 +96,7 @@ function close(id) {
 }
 
 function testMail(){
-    mail.testMail();
+    mail.testMail(env.liveEventsDB.host);
 }
 
 module.exports.count = count
