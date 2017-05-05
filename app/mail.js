@@ -9,11 +9,11 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
-function send(data) {
+function send(s, data) {
     var mailOptions = {
         to: data.lemail,
         from: 'vgccrm@luniverza.si',
-        subject: 'VGCCRM prijava preko spletnega obrazca',
+        subject: 'VGCCRM prijava preko spletnega obrazca na ' + s,
         text: 'Na dogodek ' + data.ename + ', ' + dateformat(data.starttime, 'd. m. yyyy') + ' ob ' +
             dateformat(data.starttime, 'H.MM') + ' uri,  se prijavlja ' + data.name + ' ' + data.lastname +
             '. Kontaktni podatki: ' + data.email + ', telefon:' + data.phone,
